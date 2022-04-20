@@ -1,7 +1,7 @@
 import { WeightedQuickUnionWithPassCompression } from "./WeightedQuickUnionWithPassCompression";
 
 describe("WeightedQuickUnionWithPassCompression", () => {
-  it("should work", () => {
+  it("WeightedQuickUnionWithPassCompression", () => {
     const uf = new WeightedQuickUnionWithPassCompression(3);
 
     expect(uf.connected(0, 1)).toBe(false);

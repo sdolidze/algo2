@@ -1,7 +1,7 @@
 import { QuickUnion } from "./QuickUnion";
 
 describe("QuickUnion", () => {
-  it("should work", () => {
+  it("QuickUnion", () => {
     const uf = new QuickUnion(3);
 
     expect(uf.connected(0, 1)).toBe(false);

@@ -1,7 +1,7 @@
 import { QuickFind } from "./QuickFind";
 
 describe("QuickFind", () => {
-  it("should work", () => {
+  it("QuickFind", () => {
     const uf = new QuickFind(3);
 
     expect(uf.connected(0, 1)).toBe(false);

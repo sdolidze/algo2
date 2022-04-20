@@ -1,7 +1,7 @@
 import { binarySearch } from "./binarySearch";
 
 describe("binarySearch", () => {
-  it("should work", () => {
+  it("binarySearch", () => {
     const arr = [0, 4, 5, 6, 12, 65, 90];
 
     expect(binarySearch(arr, 0)).toBe(0);
