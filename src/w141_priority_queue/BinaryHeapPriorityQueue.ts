@@ -1,4 +1,6 @@
-export class BinaryHeapPriorityQueue<T> {
+import { PriorityQueue } from "./PriorityQueue";
+
+export class BinaryHeapPriorityQueue<T> implements PriorityQueue<T> {
   private arr: Array<T | null>;
   private size: number;
 
@@ -21,6 +23,18 @@ export class BinaryHeapPriorityQueue<T> {
     this.sink(1);
 
     return max!;
+  }
+
+  public max(): T {
+    if (this.size === 0) {
+      throw new Error("NoSuchElement");
+    }
+
+    return this.arr[1]!; // largest element in heap
+  }
+
+  public getSize(): number {
+    return this.size;
   }
 
   private swim(child: number): void {
@@ -62,17 +76,5 @@ export class BinaryHeapPriorityQueue<T> {
     } else {
       return j;
     }
-  }
-
-  max(): T {
-    if (this.size === 0) {
-      throw new Error("NoSuchElement");
-    }
-
-    return this.arr[1]!; // largest element in heap
-  }
-
-  getSize(): number {
-    return this.size;
   }
 }
