@@ -1,0 +1,25 @@
+{
+  "name": "algo2",
+  "version": "1.0.0",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "start": "ts-node src/index.ts",
+    "start:dev": "nodemon",
+    "build": "tsc",
+    "clean": "rm -rf lib",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "prettier:check": "yarn prettier src --check",
+    "prettier:fix": "yarn prettier src --write",
+    "eslint:check": "yarn eslint src",
+    "eslint:fix": "yarn eslint src --fix"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.25",
+    "nodemon": "^2.0.15",
+    "ts-node": "^10.7.0",
+    "typescript": "^4.6.3"
+  }
+}
