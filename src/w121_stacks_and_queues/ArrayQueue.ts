@@ -1,4 +1,6 @@
-export class ArrayQueue<T> {
+import { Queue } from "./Queue";
+
+export class ArrayQueue<T> implements Queue<T> {
   private arr: Array<T | null>;
   private first: number; // index of first element of queue
   private last: number; // index of next available slot
@@ -12,11 +14,7 @@ export class ArrayQueue<T> {
   }
 
   enqueue(elem: T): void {
-    if (elem === null) {
-      throw new Error("ElemIsNull");
-    }
-
-    if (this.size == this.arr.length) {
+    if (this.size === this.arr.length) {
       this.resize(this.size * 2);
     }
 
@@ -26,7 +24,7 @@ export class ArrayQueue<T> {
   }
 
   dequeue(): T {
-    if (this.size == 0) {
+    if (this.size === 0) {
       throw new Error("NoSuchElement");
     }
 
@@ -35,22 +33,22 @@ export class ArrayQueue<T> {
     this.size--;
     this.first = (this.first + 1) % this.arr.length;
 
-    if (this.size > 0 && this.size == this.arr.length / 4) {
+    if (this.size > 0 && this.size === this.arr.length / 4) {
       this.resize(this.arr.length / 2);
     }
 
     return elem as T;
   }
 
-  public peek(): T {
-    if (this.size == 0) {
+  peek(): T {
+    if (this.size === 0) {
       throw new Error("NoSuchElement");
     }
 
     return this.arr[this.first] as T;
   }
 
-  public getSize(): number {
+  getSize(): number {
     return this.size;
   }
 

@@ -18,7 +18,7 @@ export class QuickFind implements UnionFind {
     let qid = this.id[q];
 
     for (let i = 0; i < this.id.length; i++) {
-      if (this.id[i] == pid) {
+      if (this.id[i] === pid) {
         this.id[i] = qid;
       }
     }
@@ -27,7 +27,7 @@ export class QuickFind implements UnionFind {
   }
 
   connected(p: number, q: number): boolean {
-    return this.id[p] == this.id[q];
+    return this.id[p] === this.id[q];
   }
 
   find(p: number): number {

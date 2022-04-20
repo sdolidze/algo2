@@ -20,7 +20,7 @@ export class WeightedQuickUnionWithPassCompression implements UnionFind {
     let rootP = this.find(p);
     let rootQ = this.find(q);
 
-    if (rootP == rootQ) {
+    if (rootP === rootQ) {
       return;
     }
 
@@ -36,7 +36,7 @@ export class WeightedQuickUnionWithPassCompression implements UnionFind {
   }
 
   connected(p: number, q: number): boolean {
-    return this.find(p) == this.find(q);
+    return this.find(p) === this.find(q);
   }
 
   find(p: number): number {

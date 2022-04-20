@@ -10,7 +10,7 @@ export class ArrayStack<T> implements Stack<T> {
   }
 
   push(elem: T): void {
-    if (this.size == this.xs.length) {
+    if (this.size === this.xs.length) {
       this.resize(this.size * 2);
     }
 
@@ -27,7 +27,7 @@ export class ArrayStack<T> implements Stack<T> {
     this.size--;
 
     // avoid thrashing, invariant: array is between 25% and 100% full
-    if (this.size > 0 && this.size == this.xs.length / 4) {
+    if (this.size > 0 && this.size === this.xs.length / 4) {
       this.resize(this.xs.length / 2);
     }
 
