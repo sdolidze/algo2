@@ -1,6 +1,6 @@
 import { UnionFind } from "./UnionFind";
 
-export class QuickFind implements UnionFind {
+export class QuickUnion implements UnionFind {
   private id: number[];
   private count: number;
 
@@ -14,24 +14,20 @@ export class QuickFind implements UnionFind {
   }
 
   union(p: number, q: number): void {
-    let pid = this.id[p];
-    let qid = this.id[q];
-
-    for (let i = 0; i < this.id.length; i++) {
-      if (this.id[i] == pid) {
-        this.id[i] = qid;
-      }
-    }
-
+    this.id[this.find(p)] = q;
     this.count--;
   }
 
   connected(p: number, q: number): boolean {
-    return this.id[p] == this.id[q];
+    return this.find(p) === this.find(q);
   }
 
   find(p: number): number {
-    return this.id[p];
+    while (p != this.id[p]) {
+      p = this.id[p];
+    }
+
+    return p;
   }
 
   getCount(): number {
