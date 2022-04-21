@@ -11,7 +11,7 @@ export function removeMin(node: Node): Node {
     return node.right;
   }
 
-  node.left = removeMax(node.left);
+  node.left = removeMin(node.left);
   node.count = 1 + size(node.left) + size(node.right);
 
   return node;
@@ -90,7 +90,7 @@ export function ceiling(node: Node, key: string): Node | null {
   if (cmp === 0) {
     return node;
   } else if (cmp < 0) {
-    const t = floor(node.left, key);
+    const t = ceiling(node.left, key);
 
     if (t != null) {
       return t;
@@ -98,7 +98,7 @@ export function ceiling(node: Node, key: string): Node | null {
       return node;
     }
   } else {
-    return floor(node.right, key);
+    return ceiling(node.right, key);
   }
 }
 
@@ -118,43 +118,11 @@ export function rank(node: Node, key: string): number {
   }
 }
 
-export function select(k: number): string | null {
-  return null;
-}
-
 export function sizeRange(node: Node, lo: string, hi: string): number {
   if (contains(node, hi)) {
     return rank(node, hi) - rank(node, lo) + 1;
   } else {
     return rank(node, hi) - rank(node, lo);
-  }
-}
-
-export function keys(node: Node, lo: string, hi: string): string[] {
-  // todo: do same with binary search: find left endpoint and find right endpoint
-  const queue: string[] = [];
-  keysInner(node, queue, lo, hi);
-  return queue;
-}
-
-export function keysInner(node: Node, list: string[], lo: string, hi: string): void {
-  if (node === null) {
-    return;
-  }
-
-  const cmpLo = compare(lo, node.key);
-  const cmpHi = compare(hi, node.key);
-
-  if (cmpLo < 0) {
-    keysInner(node.left, list, lo, hi);
-  }
-
-  if (cmpLo <= 0 && cmpHi >= 0) {
-    list.push(node.key);
-  }
-
-  if (cmpHi > 0) {
-    keysInner(node.right, list, lo, hi);
   }
 }
 
@@ -233,7 +201,7 @@ export function get(node: Node, key: string): string | null {
 }
 
 export function contains(node: Node, key: string): boolean {
-  return false;
+  return get(node, key) !== null;
 }
 
 export function isEmpty(node: Node): boolean {
@@ -244,14 +212,35 @@ export function size(node: Node): number {
   return node === null ? 0 : node.count;
 }
 
-export function inOrder(node: Node, keys: string[]): void {
+export function keys(node: Node, results: string[]): void {
   if (node === null) {
     return;
   }
 
-  inOrder(node.left, keys);
-  keys.push(node.key);
-  inOrder(node.right, keys);
+  keys(node.left, results);
+  results.push(node.key);
+  keys(node.right, results);
+}
+
+export function keyRange(node: Node, results: string[], lo: string, hi: string): void {
+  if (node === null) {
+    return;
+  }
+
+  const cmpLo = compare(lo, node.key);
+  const cmpHi = compare(hi, node.key);
+
+  if (cmpLo < 0) {
+    keyRange(node.left, results, lo, hi);
+  }
+
+  if (cmpLo <= 0 && cmpHi >= 0) {
+    results.push(node.key);
+  }
+
+  if (cmpHi > 0) {
+    keyRange(node.right, results, lo, hi);
+  }
 }
 
 export function compare(a: string, b: string) {

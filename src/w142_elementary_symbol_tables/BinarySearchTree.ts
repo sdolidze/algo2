@@ -39,28 +39,32 @@ export class BinarySearchTree {
     return bst.max(this.root)?.value ?? null;
   }
 
-  public floor(key: string): bst.Node | null {
-    return bst.floor(this.root, key);
+  public floor(key: string): string | null {
+    return bst.floor(this.root, key)?.value ?? null;
   }
 
-  public ceiling(key: string): bst.Node | null {
-    return bst.ceiling(this.root, key);
+  public ceiling(key: string): string | null {
+    return bst.ceiling(this.root, key)?.value ?? null;
   }
 
   public rank(key: string): number {
     return bst.rank(this.root, key);
   }
 
-  public select(k: number): string | null {
-    return bst.select(k);
-  }
-
   public sizeRange(lo: string, hi: string): number {
     return bst.sizeRange(this.root, lo, hi);
   }
 
-  public keys(lo: string, hi: string): string[] {
-    return bst.keys(this.root, lo, hi);
+  public keys(): string[] {
+    const results: string[] = [];
+    bst.keys(this.root, results);
+    return results;
+  }
+
+  public keyRange(lo: string, hi: string): string[] {
+    const results: string[] = [];
+    bst.keyRange(this.root, results, lo, hi);
+    return results;
   }
 
   public isEmpty(): boolean {
@@ -69,9 +73,5 @@ export class BinarySearchTree {
 
   public size(): number {
     return bst.size(this.root);
-  }
-
-  public inOrder(keys: string[]): void {
-    bst.inOrder(this.root, keys);
   }
 }
