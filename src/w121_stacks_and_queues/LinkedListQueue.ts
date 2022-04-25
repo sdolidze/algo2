@@ -45,4 +45,8 @@ export class LinkedListQueue<T> implements Queue<T> {
   getSize(): number {
     return this.size;
   }
+
+  isEmpty(): boolean {
+    return this.getSize() === 0;
+  }
 }
