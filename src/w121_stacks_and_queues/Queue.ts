@@ -3,4 +3,5 @@ export interface Queue<T> {
   dequeue(): T;
   peek(): T;
   getSize(): number;
+  isEmpty(): boolean;
 }

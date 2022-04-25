@@ -52,6 +52,10 @@ export class ArrayQueue<T> implements Queue<T> {
     return this.size;
   }
 
+  isEmpty(): boolean {
+    return this.getSize() === 0;
+  }
+
   private resize(newSize: number): void {
     const newArr: Array<T | null> = new Array(newSize).fill(null);
 
